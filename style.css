@@ -1,0 +1,40 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#editor-container {
+    display: flex;
+    width: 90%;
+    height: 80vh;
+    border: 1px solid #ccc;
+}
+
+#editor {
+    width: 70%;
+    height: 100%;
+}
+
+#ai-helper {
+    width: 30%;
+    height: 100%;
+    background-color: #ffffff;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#ai-response {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 60%;
+    overflow-y: auto;
+}
