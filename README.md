@@ -1,36 +1,55 @@
+# Multi-File Code Editor
 
-# Code Editor with AI Helper and Output Viewer
-
-This is a simple code editor web application with an integrated AI helper and a command output viewer. It is built using HTML, CSS, and JavaScript, and utilizes the Ace editor for code editing capabilities.
+This project is a simple Multi-File Code Editor built using HTML, CSS, and JavaScript. It provides the ability to create, edit, and run multiple JavaScript files directly in the browser, with a built-in console to display the output.
 
 ## Features
 
-- **Code Editor**: A full-featured editor using the Ace library with syntax highlighting and autocompletion.
-- **AI Helper**: A simulated AI helper that analyzes the code and provides suggestions for improvement.
-- **Command Output Viewer**: Allows users to run JavaScript code directly from the editor and view the output or any error messages.
+- **Multi-File Editor**: Create, edit, rename, and delete files within the editor.
+- **Ace Integration**: Provides syntax highlighting for JavaScript code.
+- **Run JavaScript Code**: Execute the code written in the editor and view output in the console section.
+- **File Explorer**: Manage files with options for renaming and deleting.
+- **Command Output**: The result of running the code is displayed in the output section.
+
+## Usage
+
+1. Click on "New File" to create a new file.
+2. Write your JavaScript code in the editor.
+3. Click "Run Code" to execute the code.
+4. See the output in the output viewer section.
+
+## Getting Started
+
+1. Clone the repository to your local machine.
+2. Open the `index.html` file in your browser.
+3. Use the file explorer to create and manage your files, then run the code to see the output.
+
+### Demo
+
+[![Demo](https://img.icons8.com/fluent/48/000000/rocket.png)](https://mohaeneza43.github.io/Code-Editor/)
+
+## Technologies Used
+
+- **HTML, CSS, JavaScript**: The editor and layout are developed using standard web technologies.
+- **Ace Editor**: For an enhanced code editing experience.
+  
+## Folder Structure
+
+- **index.html**: Main HTML file for the editor.
+- **style.css**: Styles for the editor and UI components.
+- **script.js**: JavaScript functionality for handling file management and running code.
+
+## Screenshots
+
+![Multi-File Code Editor](screenshot.png)
 
 ## How to Use
 
-1. **Edit Code**: You can type your JavaScript code directly in the editor area.
-2. **AI Helper**: Click the "Check Code" button to receive suggestions from the AI helper based on your code.
-3. **Run Code**: Click the "Run Code" button to execute your JavaScript code and see the output in the command output viewer.
+1. **Create a File**: Click "New File" and provide a file name with an extension.
+2. **Switch Files**: Click on the file name in the file explorer to switch between files.
+3. **Rename/Delete Files**: Use the "Rename" or "Delete" buttons to manage files.
+4. **Run Code**: After writing JavaScript code, click the "Run Code" button to execute it. The output will be displayed below the editor.
 
-## Project Structure
+## License
 
-- `index.html` - The main HTML file that contains the structure of the application.
-- `style.css` - The CSS file that styles the editor, AI helper, and output viewer.
-- `script.js` - JavaScript file that adds functionality to the code editor, AI helper, and command output viewer.
+This project is licensed under the MIT License.
 
-## Libraries Used
-
-- **Ace Editor**: An embeddable code editor written in JavaScript. It provides the basic editing functionality similar to an IDE.
-- **JavaScript**: To add interactivity, run user code, and implement AI helper features.
-
-## Running the Project
-
-To run the project, simply open the `index.html` file in your web browser. No additional setup is required.
-
-## Note
-
-- The AI helper is a basic simulation and does not perform advanced code analysis.
-- The code execution is limited to JavaScript and runs in the browser environment.
