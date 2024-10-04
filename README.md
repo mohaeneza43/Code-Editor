@@ -25,7 +25,7 @@ This project is a simple Multi-File Code Editor built using HTML, CSS, and JavaS
 
 ### Demo
 
-[![Demo](https://img.icons8.com/fluent/48/000000/rocket.png)](https://mohaeneza43.github.io/Code-Editor/)
+[![Demo] Demo (https://img.icons8.com/fluent/48/000000/rocket.png)](https://mohaeneza43.github.io/Code-Editor/)
 
 ## Technologies Used
 
