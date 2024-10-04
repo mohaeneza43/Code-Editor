@@ -1,5 +1,3 @@
-
-<!-- Add the following script to initialize the Ace editor -->
 <script>
     window.onload = function () {
         // Initialize the Ace editor
