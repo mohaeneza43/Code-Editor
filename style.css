@@ -31,10 +31,10 @@ body {
     box-sizing: border-box;
 }
 
-#ai-response {
+#ai-response, #output-viewer {
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
-    height: 60%;
+    height: 25%;
     overflow-y: auto;
 }
