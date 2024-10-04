@@ -27,7 +27,7 @@ This project is a simple Multi-File Code Editor built using HTML, CSS, and JavaS
 
 Here you can find the demo link:
 
-- [Demo](https://mohaeneza43.github.io/mohaeneza43/Assets/Login.html)
+- [Demo](https://mohaeneza43.github.io/Code-Editor)
 
 ## Technologies Used
 
