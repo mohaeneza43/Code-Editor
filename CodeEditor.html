@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-File Code Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            overflow: hidden;
+        }
+        #header, #footer {
+            background-color: #2d2d2d;
+            padding: 10px;
+        }
+        #main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        #sidebar {
+            width: 200px;
+            background-color: #252526;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #editor {
+            flex: 1;
+            padding: 10px;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            resize: none;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+        }
+        #output-container {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f0f0f;
+            border-top: 1px solid #3c3c3c;
+        }
+        #output {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #file-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .file-actions {
+            display: flex;
+        }
+        .file-actions button {
+            padding: 2px 5px;
+            font-size: 0.8em;
+        }
+        #clear-output-btn {
+            background-color: #4CAF50;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Multi-File Code Editor</h1>
+    </div>
+    <div id="main">
+        <div id="sidebar">
+            <h3>File Explorer</h3>
+            <button id="new-file-btn">New File</button>
+            <ul id="file-list"></ul>
+        </div>
+        <div id="editor-container">
+            <textarea id="editor" rows="15" cols="80"></textarea>
+            <div id="output-container">
+                <div>
+                    <button id="run-btn">Run Code</button>
+                    <button id="clear-output-btn">Clear Output</button>
+                </div>
+                <div id="output"></div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p id="status">Status: Ready</p>
+    </div>
+    <script>
+        const editor = document.getElementById('editor');
+        const output = document.getElementById('output');
+        const runBtn = document.getElementById('run-btn');
+        const newFileBtn = document.getElementById('new-file-btn');
+        const fileList = document.getElementById('file-list');
+        const status = document.getElementById('status');
+        const clearOutputBtn = document.getElementById('clear-output-btn');
+
+        let files = {};
+        let currentFile = null;
+
+        function createFile(name, content = '') {
+            if (!files.hasOwnProperty(name)) {
+                files[name] = content;
+                updateFileList();
+                switchToFile(name);
+            } else {
+                alert('A file with this name already exists.');
+            }
+        }
+
+        function deleteFile(name) {
+            if (files.hasOwnProperty(name)) {
+                delete files[name];
+                if (currentFile === name) {
+                    currentFile = null;
+                    editor.value = '';
+                    status.textContent = 'Status: No file selected';
+                }
+                updateFileList();
+                if (Object.keys(files).length > 0) {
+                    switchToFile(Object.keys(files)[0]);
+                }
+            }
+        }
+
+        function renameFile(oldName, newName) {
+            if (newName && newName !== oldName && !files.hasOwnProperty(newName)) {
+                files[newName] = files[oldName];
+                delete files[oldName];
+                if (currentFile === oldName) {
+                    currentFile = newName;
+                }
+                updateFileList();
+                switchToFile(newName);
+            } else if (files.hasOwnProperty(newName)) {
+                alert('A file with this name already exists.');
+            }
+        }
+
+        function switchToFile(name) {
+            if (currentFile && files.hasOwnProperty(currentFile)) {
+                files[currentFile] = editor.value;
+            }
+            currentFile = name;
+            editor.value = files[name];
+            status.textContent = `Editing: ${name}`;
+        }
+
+        function updateFileList() {
+            fileList.innerHTML = '';
+            for (let fileName in files) {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${fileName}</span>
+                    <div class="file-actions">
+                        <button onclick="renameFile('${fileName}', prompt('Enter new file name:', '${fileName}'))">Rename</button>
+                        <button onclick="deleteFile('${fileName}')">Delete</button>
+                    </div>
+                `;
+                li.querySelector('span').onclick = () => switchToFile(fileName);
+                fileList.appendChild(li);
+            }
+        }
+
+        newFileBtn.onclick = () => {
+            const fileName = prompt('Enter file name (with extension):');
+            if (fileName) createFile(fileName);
+        };
+
+        runBtn.onclick = function() {
+            const code = editor.value;
+            
+            const originalLog = console.log;
+            console.log = function(...args) {
+                const message = args.join(' ');
+                output.innerHTML += `<div>${message}</div>`;
+                output.scrollTop = output.scrollHeight;
+                originalLog.apply(console, args);
+            };
+
+            try {
+                output.innerHTML += '<div>--- Execution Start ---</div>';
+                eval(code);
+                output.innerHTML += '<div>--- Execution End ---</div>';
+            } catch (error) {
+                output.innerHTML += `<div style="color: red;">Error: ${error.message}</div>`;
+            }
+
+            console.log = originalLog;
+            output.scrollTop = output.scrollHeight;
+        };
+
+        clearOutputBtn.onclick = function() {
+            output.innerHTML = '';
+        };
+
+        // Initialize with a default file
+        createFile('script.js', '// Write your JavaScript code here\nconsole.log("Hello, World!");');
+    </script>
+</body>
+</html>
