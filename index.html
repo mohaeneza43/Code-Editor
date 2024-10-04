@@ -20,25 +20,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js" integrity="sha384-TazBToUSm68w7gZtC9+39tD/4VkcNpDkLPIoYIvfGhwd2xrSM3HoOg/uXN9kc69F" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-
-    <!-- Add the following script to initialize the Ace editor -->
-    <script>
-        window.onload = function () {
-            // Initialize the Ace editor
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.session.setMode("ace/mode/javascript");
-            editor.setOptions({
-                fontSize: "12pt",
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true
-            });
-
-            // Set the initial content of the editor (placeholder or empty)
-            editor.setValue(""); // <-- Set a placeholder or keep it empty
-        };
-    </script>
 </body>
 </html>
 
