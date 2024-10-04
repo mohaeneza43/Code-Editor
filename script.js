@@ -11,5 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Set the initial content of the editor (placeholder or empty)
-    editor.setValue("// Start writing your code here...\n"); // <-- Example placeholder content
+    editor.setValue("// Start writing your code here..."); // <-- Example placeholder content
 });
