@@ -42,7 +42,8 @@ Here you can find the demo link:
 
 ## Screenshots
 
-![Multi-File Code Editor](screenshot.png)
+![Multi-File Code Editor](![Multi-File Code Editor](https://github.com/user-attachments/assets/b9a111b3-9dd2-4d0e-a4c4-3c6c9178b68b)
+)
 
 ## How to Use
 
