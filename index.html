@@ -9,10 +9,10 @@
 </head>
 <body>
     <div id="editor-container">
-        editor.setValue("")
+        <div id="editor">function hello() { console.log("Hello, world!"); }</div>
         <div id="ai-helper">
             <h3>AI Helper</h3>
-            <textarea id="ai-chat-box" placeholder="Ask me anything about your code..."></textarea>
+            <textarea id="ai-response" placeholder="Ask me anything about your code..."></textarea>
             <button id="ai-check-code">Check Code</button>
             <h3>Command Output</h3>
             <button id="run-code">Run Code</button>
@@ -22,4 +22,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js" integrity="sha384-TazBToUSm68w7gZtC9+39tD/4VkcNpDkLPIoYIvfGhwd2xrSM3HoOg/uXN9kc69F" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
+
+window.onload = function () {
+    // Initialize the Ace editor
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setOptions({
+        fontSize: "12pt",
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
+        enableSnippets: true
+    });
+
+    // Set the initial content of the editor (placeholder or empty)
+    editor.setValue("// Start writing your code here...\n");
+};
+
+
 </html>
